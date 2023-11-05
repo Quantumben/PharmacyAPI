@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
+use App\Models\Medication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,13 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $quantity = fake()->randomDigitNotZero();
+
         return [
-            //
+           'customer_id' => Customer::factory(),
+           'medication_id' => Medication::factory(),
+           'quantity' => $quantity,
+           'total' => $quantity * 10,
         ];
     }
 }
